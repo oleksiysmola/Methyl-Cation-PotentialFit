@@ -1,0 +1,105 @@
+
+ Working directory              : /tmp/asmola/molpro.5iGoXMEtr7/
+ Global scratch directory       : /tmp/asmola/molpro.5iGoXMEtr7/
+ Wavefunction directory         : /home/asmola/wfu/
+ Main file repository           : /tmp/asmola/molpro.5iGoXMEtr7/
+
+ id        : uclcc
+
+ Nodes                        nprocs
+ vincent.theory.phys.ucl.ac.uk    1
+ GA implementation: MPI file
+ GA implementation (serial work in mppx): MPI file
+
+ Using customized tuning parameters: mindgm=1; mindgv=20; mindgc=4; mindgr=1; noblas=0; minvec=7
+ default implementation of scratch files=df  
+
+
+ Variables initialized (1015), CPU time= 0.00 sec
+ ***,CH3+ Ground State Energy with CCSD(T)-F12 and cc-pVTZ-F12
+ memory,500,m;
+ 
+ geometry={angstrom
+ c
+ h1 , 1, rch1
+ h2 , 1, rch2, 2, ach12
+ h3 , 1, rch3, 3, ach23,  3, rho
+ }
+ 
+                                                ! Specify the initial values of the internal coordinates (in Angstroms and degrees)
+ 
+ rch1 = 1.00
+ rch2 = 1.00
+ rch3 = 1.00
+ ach12 = 120.00
+ ach23 = 120.00
+ rho = 180.00
+ 
+                                                                                 ! Set charge to +1
+ set,nelec=8
+ set,charge=+1
+                                                                                 ! Use the cc-pVTZ-F12 basis set
+ basis=cc-pVTZ-F12
+ 
+ hf
+ optg,procedure=runmp2,savexyz=CH3OH_equilibrium_mp2.xyz
+ runmp2 = {hf;mp2}
+ 
+                                                                                 ! Use explicitly correlated F12 methods
+                                                                            ! First, MP2-F12 (useful for initial electronic energy)
+ {mp2-f12}
+ 
+                                                                        ! If desired, perform CCSD(T)-F12 for more accurate results
+ {ccsd(t)-f12}
+ 
+                                                                                 ! Output the energy
+ 
+ Commands initialized (818), CPU time= 0.00 sec, 672 directives.
+ Default parameters read. Elapsed time= 0.05 sec
+
+ Checking input...
+ Passed
+1
+
+
+                                         ***  PROGRAM SYSTEM MOLPRO  ***
+                                       Copyright, TTI GmbH Stuttgart, 2015
+                                    Version 2022.1 linked Mar  3 2022 23:20:00
+
+
+ **********************************************************************************************************************************
+ LABEL *   CH3+ Ground State Energy with CCSD(T)-F12 and cc-pVTZ-F12                     
+  (8 PROC) 64 bit serial version                                                         DATE: 04-Oct-24          TIME: 12:20:36  
+ **********************************************************************************************************************************
+
+ SHA1:             31073afc4d8441e10870424e0d77336a33bc4286
+ **********************************************************************************************************************************
+
+ Memory per process:       500 MW
+ Total memory per node:    500 MW
+
+ GA preallocation disabled
+ GA check disabled
+
+ Variable memory set to 500.0 MW
+
+ Illegal repeated connection points in Z matrix line                    4
+
+ Z matrix      
+ ========
+
+ Records:   700.0   700.0
+ Maximum, total, and current numbers of geometry points 100   0   0
+ Orientation using atomic masses  
+
+   #     Tag     N1 Distance  N2 Angle     N3 Angle        J
+
+   1  1   C    
+   2  2   H1      1 RCH1    
+   3  3   H2      1 RCH2       2 ACH12   
+   4  4   H3      1 RCH3       3 ACH23      3 RHO          0
+ ? Error
+ ? Geometry specification error
+ ? The problem occurs in zmatrix.f:zmat_input
+
+ GLOBAL ERROR fehler on processor   0                                         
