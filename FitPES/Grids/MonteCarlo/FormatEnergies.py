@@ -9,7 +9,7 @@ pandarallel.initialize(progress_bar=True)
 # columns = ["grep", "rCH1", "rCH2", "rCH3", "Sa", "Sb", "rho", "E", "point"]
 columns = ["grep", "rCH1", "rCH2", "rCH3", "Sa", "Sb", "rho", "E", "E_VQZ", "point"]
 # df = pd.read_csv("CH3OH-3DEnergies.dat", delim_whitespace=True, names=columns, dtype=str)
-df = pd.read_csv("CH3+_1D-CBS.dat", delim_whitespace=True, names=columns, dtype=str)
+df = pd.read_csv("CH3+_MonteCarlo-CBS.dat", delim_whitespace=True, names=columns, dtype=str)
 # df["point"] = df["point"].astype(int)
 def splitPoint(row):
     row["point"] = row["point"].split(".")[0]
@@ -20,7 +20,7 @@ df["point"] = df["point"].astype(int)
 df = df.sort_values(by="point")
 df = df.to_string(index=False, header=False)
 # print(df)
-statesFile = "CH3+_1D-CBS.energies"
+statesFile = "CH3+_MonteCarlo-CBS.energies"
 with open(statesFile, "w+") as FileToWriteTo:
     FileToWriteTo.write(df)
 # re1= 1.4296
